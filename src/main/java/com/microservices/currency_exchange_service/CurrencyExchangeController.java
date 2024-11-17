@@ -13,16 +13,16 @@ public class CurrencyExchangeController {
 	public Environment environment;
 
 	@Autowired
-
 	public CurrencyExchangeRepository currencyExchangeRepository;
 
 	@GetMapping("/currency-exchange/from/{from}/to/{to}")
 	public CurrencyExchange retrieveExchange(@PathVariable String from, @PathVariable String to) {
 
 		CurrencyExchange currencyExchange = currencyExchangeRepository.findByFromAndTo(from, to);
-		
-		if(currencyExchange == null) {
-			throw new RuntimeException("Unable to finf the data");		}
+
+		if (currencyExchange == null) {
+			throw new RuntimeException("Unable to finf the data");
+		}
 		currencyExchange.setEnvironment(environment.getProperty("local.server.port"));
 
 		return currencyExchange;
